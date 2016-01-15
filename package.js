@@ -26,17 +26,16 @@ Package.onUse(function(api) {
   api.use('underscore');
   api.use('ecmascript');
   
-  api.use('cfs:standard-packages');
-  api.use('cfs:gridfs');
-  api.use('lai:collection-extensions');
-  api.use('alanning:roles');
-  api.use('aldeed:collection2');
-  api.use('aldeed:simple-schema');
-  api.use('cfs:standard-packages');
-  api.use('momentjs:moment');
+  api.use('cfs:standard-packages@0.5.9');
+  api.use('cfs:gridfs@0.0.33');
+  api.use('lai:collection-extensions@0.2.1_1');
+  api.use('alanning:roles@1.2.14');
+  api.use('aldeed:collection2@2.8.0');
+  api.use('aldeed:simple-schema@1.5.3');
+  api.use('momentjs:moment@2.11.1');
   api.use('aslagle:reactive-table@0.8.23');
-  api.use('anti:i18n');
-  api.use('planettraining:material-design-icons-font');
+  api.use('anti:i18n@0.4.3');
+  api.use('planettraining:material-design-icons-font@2.1.1_2');
   
   api.addFiles([
     'api/lib/utils/fs-utils.js',
