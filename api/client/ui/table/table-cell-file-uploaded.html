@@ -1,0 +1,11 @@
+<template name="cmBackup_TableCellFileUploaded">
+  <div class="cm_backup-file-uploaded-table-cell">
+    {{#with this}}
+      {{#if isUploaded}}
+        Uploaded
+      {{else}}
+        Uploading...
+      {{/if}}
+    {{/with}}
+  </div>
+</template>

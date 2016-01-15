@@ -1,0 +1,8 @@
+<template name="cmBackup_BackupList">
+  <div class="cm_backup-list">
+    {{> reactiveTable settings=Tables.Backups}}
+  
+    <button class="btn btn-primary create-backup">{{i18n 'backup.create'}}</button>
+    <input type="file" class="upload-backup" />
+  </div>
+</template>
