@@ -81,6 +81,6 @@ Package.onUse(function(api) {
 Package.onTest(function(api) {
   api.use('ecmascript');
   api.use('tinytest');
-  api.use('concept:backup');
+  api.use('conceptmate:backup');
   api.addFiles('tests/backup-tests.js');
 });
