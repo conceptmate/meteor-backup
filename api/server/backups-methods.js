@@ -33,29 +33,15 @@ Meteor.methods({
   /**
    * 
    */
-  exportCollection: function (collectionName) {
-    return Backup.exportCollection(collectionName);
-  },
-  
-  /**
-   * 
-   */
-  importCollection: function (collectionName, data) {
-    Backup.importCollection(collectionName, data);
-  },
-  
-  /**
-   * 
-   */
   importBackup: function (backupId) {
     check(backupId, String);
-    
+
     console.log('should import data', !importRunning);
-    
+
     if (importRunning) {
       return false;
     }
-    
+
     console.log('import data', importRunning);
 
     importRunning = true;
@@ -93,7 +79,7 @@ Meteor.methods({
 
       // get collection          
       let collection = Backup.getCollection(entries.collectionName);
-      
+
       if (!collection) {
         console.warn('No collection named ' + entries.collectionName + ' found. Ignoring export.');
         return true;
@@ -114,7 +100,7 @@ Meteor.methods({
 
       _.each(entries.data, (entry) => {
         try {
-      
+
           if (entry.type === 'FS.File') {
 
             setTimeout(() => {
@@ -127,7 +113,7 @@ Meteor.methods({
 
               let archiveFile = filesFolder.file(entry.fileName);
               let blob = archiveFile.asUint8Array();
-          
+
               if (!entry.fileType) {
                 console.warn('file type is missing ignore entry', entry);
                 return true;
@@ -144,7 +130,7 @@ Meteor.methods({
 
                 try {
                   insertDocToCollectionInFiber(collection, newFile, (err, fileObj) => {
-                    
+
                     if (fileObj) {
                       // console.log('inserted id fs.file', fileObj._id);
                     }
@@ -158,7 +144,7 @@ Meteor.methods({
             }, 1000 * ++timeoutCounter);
             return true;
           }
-              
+
           let objId = insertDocToCollectionInFiber(collection, entry, { validate: false });
           // console.log('inserted id doc', objId);
         }
@@ -167,9 +153,9 @@ Meteor.methods({
         }
       });
     });
-    
+
     importRunning = false;
-    
+
     return true;
   },
   
@@ -177,38 +163,6 @@ Meteor.methods({
    * 
    */
   exportAllCollections: function () {
-
-    let backupCollections = BackupCollections.find({}, {
-      sort: {
-        order: 1
-      }
-    });
-    
-    // export zip archive    
-    var archive = new JSZip();
-
-    backupCollections.forEach(function (backup) {
-      let collectionName = backup.collectionName;
-      Backup.exportCollection(archive, collectionName);
-    });
-
-    let blob = archive.generate({ type: 'uint8array' });
-    
-    // Create the FS.File instance
-    var newFile = new FS.File();
-
-    // // Attach the ReadStream data to it. You must tell it what the content type is.
-    newFile.attachData(blob, { type: 'application/zip' }, function (err) {
-
-      if (err) {
-        throw err;
-      }
-
-      let date = moment().format('DD-MM-YYYY_hh-mm-ss');
-
-      newFile.name(date + '.zip');
-
-      Backups.insert(newFile);
-    });
+    Backup.exportAllCollections();  
   }
 });

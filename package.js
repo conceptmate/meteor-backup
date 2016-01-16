@@ -2,7 +2,7 @@
 /* global Package */
 Package.describe({
   name: 'conceptmate:backup',
-  version: '0.1.0',
+  version: '0.1.1',
   // Brief, one-line summary of the package.
   summary: 'A package that offers convenient functions and UI to backup Meteor collections',
   // URL to the Git repository containing the source code for this package.
@@ -29,7 +29,6 @@ Package.onUse(function(api) {
   api.use('cfs:standard-packages@0.5.9');
   api.use('cfs:gridfs@0.0.33');
   api.use('lai:collection-extensions@0.2.1_1');
-  api.use('alanning:roles@1.2.14');
   api.use('aldeed:collection2@2.8.0');
   api.use('aldeed:simple-schema@1.5.3');
   api.use('momentjs:moment@2.11.1');

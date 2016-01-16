@@ -17,6 +17,8 @@ Meteor.methods({
    * 
    */
   deleteBackupCollection: function(backupCollectionId) {
+    console.log('delete backup collection %o', backupCollectionId);
+
     check(backupCollectionId, String);
     
     BackupCollections.remove({ _id: backupCollectionId });

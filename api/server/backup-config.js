@@ -2,5 +2,7 @@
 ConceptMate = typeof ConceptMate !== 'undefined' ? ConceptMate : {};
 
 ConceptMate.BackupConfig = {
-  allowedRoles: []
+  allowed: function() {
+    return true;
+  },
 }; 

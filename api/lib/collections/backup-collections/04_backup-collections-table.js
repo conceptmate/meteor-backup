@@ -1,11 +1,13 @@
+/* global Concept */
 /* global Tables */
-Tables = typeof Tables !== 'undefined' ? Tables : {};
+ConceptMate = typeof ConceptMate !== 'undefined' ? ConceptMate : {};
+ConceptMate.Tables = typeof ConceptMate.Tables !== 'undefined' ? ConceptMate.Tables : {};
 
 if (Meteor.isClient) {
   Meteor.startup(function () {
-    Tables.BackupCollections = {
+    ConceptMate.Tables.BackupCollections = {
       i18nPrefix: 'backup-collections.table',
-      collection: 'cm_backup-collections',
+      collection: ConceptMate.Collections.BackupCollections.find(), //'cm_backup-collections',
       rowsPerPage: 10,
       showFilter: true,
       showNavigation: 'auto',

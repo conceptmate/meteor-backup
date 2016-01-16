@@ -1,3 +1,5 @@
+/* global Buffer */
+/* global BackupCollections */
 /* global global */
 /* global _ */
 /* global EJSON */
@@ -8,6 +10,8 @@
 ConceptMate = typeof ConceptMate !== 'undefined' ? ConceptMate : {};
 
 Backup = (function () {
+  
+  var JSZip = Npm.require('jszip');
   
   /**
    * 
@@ -104,6 +108,44 @@ Backup = (function () {
       indent: true,
       canonical: true
     }));
+  };
+  
+  /**
+   * 
+   */
+  this.exportAllCollections = function() {
+    let backupCollections = BackupCollections.find({}, {
+      sort: {
+        order: 1
+      }
+    });
+    
+    // export zip archive    
+    var archive = new JSZip();
+
+    backupCollections.forEach((backup) => {
+      let collectionName = backup.collectionName;
+      this.exportCollection(archive, collectionName);
+    });
+
+    let blob = archive.generate({ type: 'uint8array' });
+    
+    // Create the FS.File instance
+    var newFile = new FS.File();
+
+    // // Attach the ReadStream data to it. You must tell it what the content type is.
+    newFile.attachData(blob, { type: 'application/zip' }, function (err) {
+
+      if (err) {
+        throw err;
+      }
+
+      let date = moment().format('DD-MM-YYYY_hh-mm-ss');
+
+      newFile.name(date + '.zip');
+
+      Backups.insert(newFile);
+    });
   };
   
   /**

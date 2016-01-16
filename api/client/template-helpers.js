@@ -1,4 +1,4 @@
 /* global Template */
-Template.registerHelper('Tables', function() {
-  return Tables;
+Template.registerHelper('ConceptMate', function() {
+  return ConceptMate;
 });

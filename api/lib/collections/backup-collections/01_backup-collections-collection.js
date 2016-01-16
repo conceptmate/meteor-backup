@@ -1,4 +1,3 @@
-/* global Roles */
 /* global Meteor */
 /* global ReactiveTable */
 /* global ConceptMate */
@@ -18,18 +17,18 @@ if (Meteor.isClient) {
 
 if (Meteor.isServer) {
   Meteor.publish('cm_backup-collections', function () {
-
-    if (!Roles.userIsInRole(this.userId, ConceptMate.BackupConfig.allowedRoles)) {
+    
+    if (!ConceptMate.BackupConfig.allowed.call(this)) {
       this.ready();
       return;
     }
-    
+
     return BackupCollections.find({});
   });
 
   ReactiveTable.publish('cm_backup-collections', function () {
     
-    if (!Roles.userIsInRole(this.userId, ConceptMate.BackupConfig.allowedRoles)) {
+    if (!ConceptMate.BackupConfig.allowed.call(this)) {
       return [];
     }
     

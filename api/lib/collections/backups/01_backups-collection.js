@@ -1,3 +1,4 @@
+/* global Meteor */
 /* global FS */
 /* global ConceptMate */
 /* global Backups */
@@ -21,21 +22,22 @@ if (Meteor.isServer) {
   
   Backups.allow({
     insert: function (userId, doc) {
-      return Roles.userIsInRole(userId, ConceptMate.BackupConfig.allowedRoles);
+      return true;
     },
     update: function(userId, doc, fieldNames, modifier) {
-      return Roles.userIsInRole(userId, ConceptMate.BackupConfig.allowedRoles);
+      return true;
     },
     remove: function(userId, doc) {
-      return Roles.userIsInRole(userId, ConceptMate.BackupConfig.allowedRoles);
+      return true;
     },
     download: function (userId) {
-      return Roles.userIsInRole(userId, ConceptMate.BackupConfig.allowedRoles);
-    }
+      return true;
+    }  
   });
   
   Meteor.publish('cm_backups', function() {
-    if (!Roles.userIsInRole(this.userId, ConceptMate.BackupConfig.allowedRoles)) {
+    
+    if (!ConceptMate.BackupConfig.allowed.call(this)) {
       this.ready();
       return;
     }
@@ -45,11 +47,17 @@ if (Meteor.isServer) {
   
   ReactiveTable.publish('cm_backups', function () {
     
-    if (!Roles.userIsInRole(this.userId, ConceptMate.BackupConfig.allowedRoles)) {
+    console.log('echo1');
+    
+    if (!ConceptMate.BackupConfig.allowed.call(this)) {
       return [];
     }
     
-    return ConceptMate.Collections.Backups;
+    console.log('echo2');
+    console.log(Backups instanceof FS.Collection);
+    // console.log(Backups);
+    
+    return Backups;
   }, function () {
     return {
       // group: Meteor.userDomain(this.userId)
