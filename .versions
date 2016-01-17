@@ -33,7 +33,7 @@ cfs:tempstore@0.1.4
 cfs:upload-http@0.0.20
 cfs:worker@0.1.4
 check@1.1.0
-conceptmate:backup@0.1.1
+conceptmate:backup@0.1.1_1
 ddp@1.2.2
 ddp-client@1.2.1
 ddp-common@1.2.2
@@ -52,7 +52,7 @@ jquery@1.11.4
 lai:collection-extensions@0.2.1_1
 less@2.5.1
 livedata@1.0.15
-local-test:conceptmate:backup@0.1.1
+local-test:conceptmate:backup@0.1.1_1
 logging@1.0.8
 mdg:validation-error@0.2.0
 meteor@1.1.10
