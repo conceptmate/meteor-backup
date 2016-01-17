@@ -26,7 +26,10 @@ changes. Therefore, I am searching for help of other Meteor geeks like me :).
 
 ## Demo App (Meteor Todos List App)
 
-An example app extending Meteor's todos list app demonstrates the conceptmate:backup package. The source code can be found [here](https://github.com/conceptmate/meteor-backup-example). A screencast demonstrating the app is on [YouTube](https://youtu.be/omd8bKaQn5s).
+An example app extending Meteor's todos list app demonstrates the conceptmate:backup
+package. The app is deployed on [http://conceptmate-backup.meteor.com](http://conceptmate-backup.meteor.com).
+The source code can be found [here](https://github.com/conceptmate/meteor-backup-example).
+A screencast demonstrating the app is on [YouTube](https://youtu.be/omd8bKaQn5s).
 
 ## Set Up Collections for Export
 
