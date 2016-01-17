@@ -22,9 +22,11 @@ This package is not yet feature complete but it works in its core functionality.
 be busy with other projects over the next few weeks and not be able to do incremental
 changes. Therefore, I am searching for help of other Meteor geeks like me :).
 
-**Will create a working example if enough interest.** [See issue #1 and +1 ;)](https://github.com/conceptmate/meteor-backup/issues/1)
-
 **Feedback Welcome.** Please create an issue.
+
+## Demo App (Meteor Todos List App)
+
+An example app extending Meteor's todos list app demonstrates the conceptmate:backup package. The source code can be found [here](https://github.com/conceptmate/meteor-backup-example). A screencast demonstrating the app is on [YouTube](https://youtu.be/omd8bKaQn5s).
 
 ## Set Up Collections for Export
 
